@@ -1,0 +1,932 @@
+<!doctype html>
+<html>
+
+<Head>
+    <meta name="viewport" content="width = device-width, initial-scale = 1.0">
+    <title>Qiuz Template</title>
+    <script src="cordova.js"></script>
+    <script src="phonegap.js"></script>
+    <style>
+        html {
+            min-height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            position: absolute;
+            background: url("design/Background.png");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+
+        @font-face {
+            font-family: ourFont;
+            src: url("ABeeZee-Regular.ttf");
+        }
+
+        #check {
+            display: none;
+            position: fixed;
+            left: 14%;
+            padding: 1%;
+            width: 70%;
+            top: 18%;
+            background: white;
+            font-family: ourFont;
+            border-radius: 6px;
+            box-shadow: 2px 2px 7px;
+        }
+
+        #shop {
+            background: white;
+            width: 95%;
+            border-radius: 8px;
+            box-shadow: 2px 2px 15px;
+        }
+
+        p.question {
+            background: white;
+            margin: 0;
+            margin-top: 8%;
+            padding: 2%;
+            font-size: 23px;
+            border-radius: 8px;
+            max-width: 80%;
+            left: 8%;
+            box-shadow: 2px 2px 15px #000000c4;
+            padding-top: 4%;
+            padding-bottom: 4%;
+            font-family: ourFont;
+            text-align: left;
+        }
+
+        #resultImg {
+            width: 85%;
+            background: white;
+            border-radius: 8px;
+            margin: 2.5%;
+            margin-top: -5.5%;
+            box-shadow: 2px 2px 15px #000000b0;
+        }
+
+        #get {
+            font-family: ourFont;
+            padding: 2%;
+            font-size: 19px;
+            background: rgb(25, 150, 24);
+            color: white;
+            border: 0;
+            margin: 5px;
+            border-radius: 6px;
+            box-shadow: 2px 2px 7px #00000078;
+        }
+
+        #cancel {
+            box-shadow: 2px 2px 5px #0000009c;
+            background: rgb(235, 2, 27);
+            font-family: ourFont;
+            font-size: 20px;
+            border: 0;
+            border-radius: 6px;
+            color: white;
+            padding: 2%;
+        }
+
+        button.choice {
+            padding: 4%;
+            width: 96%;
+            margin: 8px;
+            background: white;
+            border: 0;
+            font-family: ourFont;
+            font-size: 17px;
+            box-shadow: 2px 2px 7px #0000009c;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        div.choicePlace {
+            margin-top: 15%;
+            width: 80%;
+            bottom: 10%;
+            left: 5%;
+        }
+
+        button.item {
+            padding: 0;
+            width: 48%;
+            border: 0;
+            margin: 1px;
+            box-shadow: 2px 2px 7px;
+        }
+
+        div.questionHolder {
+            margin-top: 10%;
+            position: fixed;
+            width: 100%;
+            left: -100%;
+        }
+
+        *:focus {
+            outline: none;
+        }
+
+    </style>
+
+</Head>
+
+<body style="display: none;">
+    <div id="0" class="questionHolder" style="margin-top: 0; left: 0; height: 100%;">
+        <center>
+            <img src="design/logo.png" width="80%" style="margin: 10%;">
+
+            <div style="margin-top: 25%;"><button class="choice" style="padding: 2.5%; text-align: center; width:40%;"><img src="design/start.png"></button></div>
+
+            <p style="position: fixed; bottom: -1%; font-family: ourFont; font-size: 15px; width: 70%; right: 15%; background: white; padding: 1px;">copyrights reserved to Orca Team.</p>
+        </center>
+    </div>
+    <div id="1" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The first man to land the moon is ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Buzz Aldrin</button>
+                <button class="choice" id="true">B- Neil Armstrong</button>
+                <button class="choice">C- Gene Cernan</button>
+                <button class="choice">D- Jack Schmitt</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="1" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">How many planets does our solar system have?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 9</button>
+                <button class="choice">B- 10</button>
+                <button class="choice" id="true">C- 8</button>
+                <button class="choice">D- 7</button>
+            </div>
+
+        </center>
+    </div>
+
+    <div id="1" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">In what year was NASA established?</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- 1958</button>
+                <button class="choice">B- 1968</button>
+                <button class="choice">C- 1922</button>
+                <button class="choice">D- 2000</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="1" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">How many moons does planet Mars have?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 3</button>
+                <button class="choice" id="true">B- 2</button>
+                <button class="choice">C- 12</button>
+                <button class="choice">D- 27</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="2" class="questionHolder" style="display: none">
+        <center>
+            <p class="question"> Elon Musk founded a spacecraft company in 2002. What is the company's name?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Space 13</button>
+                <button class="choice">B- NACA</button>
+                <button class="choice" id="true">C- SpaceX</button>
+                <button class="choice">D- Musk Space</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="2" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">A light year is a measuring unit. It refers to ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- The distance a light beam covers in a year</button>
+                <button class="choice">B- The distance a planet travels in one year</button>
+                <button class="choice">C- The speed a shooting star</button>
+                <button class="choice">D- The speed in which earth travels around the sun</button>
+            </div>
+
+        </center>
+    </div>
+
+    <div id="2" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The largest planet in size is ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Jupiter</button>
+                <button class="choice">B- Mars</button>
+                <button class="choice">C- Earth</button>
+                <button class="choice">D- Neptune</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="2" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The smallest planet in size is ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Mercury</button>
+                <button class="choice">B- Earth</button>
+                <button class="choice">C- Venus</button>
+                <button class="choice">D- Mars</button>
+
+                
+            </div>
+        </center>
+    </div>
+
+    <div id="3" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The planet also known as the Red planet is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Earth</button>
+                <button class="choice">B- Mercury</button>
+                <button class="choice" id="true">C- Mars</button>
+                <button class="choice">D- Jupiter</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="3" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The study of outer space is called ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Spaceology</button>
+                <button class="choice">B- Galaxiology</button>
+                <button class="choice">C- Solarology</button>
+                <button class="choice" id="true">D- Astronomy</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="3" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The most famous theory which explains the beginning of the universe is known as ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Bouncing Cosmology Theory</button>
+                <button class="choice" id="true">B- Bigbang Theory</button>
+                <button class="choice">C- The Black Hole Theory</button>
+                <button class="choice">D- Plasma Universe Theory</button>
+            </div>
+
+           
+        </center>
+    </div>
+
+    <div id="3" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Our galaxy is known as ___. </p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Universal Galaxy</button>
+                <button class="choice">B- Earth</button>
+                <button class="choice">C- Sun</button>
+                <button class="choice" id="true">D- Milky Way</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="4" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">A terrestrial planet is composed of ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Rocky material</button>
+                <button class="choice">B- Gaseous material</button>
+                <button class="choice">C- Liquid gases and rocks</button>
+                <button class="choice">D- Ice and rocks</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="4" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Pluto is considered a ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- A Planet</button>
+                <button class="choice">B- An Asteroid</button>
+                <button class="choice">C- A Moon</button>
+                <button class="choice" id="true">D- A dwarf planet</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="4" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The type of force responsible for forming solar systems is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Nuclear Force</button>
+                <button class="choice" id="true">B- Gravity</button>
+                <button class="choice">C- Electromagnetic Force</button>
+                <button class="choice">D- Universal Force</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="4" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Which planet has the largest number of moons?</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Jupiter</button>
+                <button class="choice">B- Mercury</button>
+                <button class="choice">C- Saturn</button>
+                <button class="choice">D- Venus</button>
+            </div>
+        </center>
+    </div>
+
+    <div id="5" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The distance between earth and the moon is approximately ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- 384,400 km</button>
+                <button class="choice">B- 456,500 km</button>
+                <button class="choice">C- 654,300 km</button>
+                <button class="choice">D- 950,500 km</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="5" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Scientists estimate the number of stars in our Galaxy to be</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- A few thousands</button>
+                <button class="choice" id="true">B- 100 billion</button>
+                <button class="choice">C- 100 million</button>
+                <button class="choice">D- A billion</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="5" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">NASA is planning to land humans on Mars by ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 2100</button>
+                <button class="choice">B- 2050</button>
+                <button class="choice" id="true">C- 2033</button>
+                <button class="choice">D- 2025</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="5" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">A black hole is a region of ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Total darkness</button>
+                <button class="choice">B- A whirlpool</button>
+                <button class="choice" id="true">C- Strong gravity</button>
+                <button class="choice">D- A large black mass</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="6" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">What is a planetary ring system?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Clouds orbiting around a planet</button>
+                <button class="choice">B- Moons forming a disc around a planet</button>
+                <button class="choice" id="true">C- solid material orbiting around a planet</button>
+                <button class="choice">D- Light beams forming a disc around a planet</button>
+            </div>
+        </center>
+    </div>
+
+    <div id="6" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The Only planet thought to have supported life 3.7 billion years ago is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Mercury</button>
+                <button class="choice">B- Jupiter</button>
+                <button class="choice">C- Venus</button>
+                <button class="choice" id="true">D- Mars</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="6" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Cosmology is a branch of astronomy that studies ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- The origin of universe</button>
+                <button class="choice">B- The explosions in outer space</button>
+                <button class="choice">C- The extraordinary phenomenons in space</button>
+                <button class="choice">D- The composition of stars</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="6" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The hottest planet in our solar system is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Venus</button>
+                <button class="choice">B- Mercury</button>
+                <button class="choice">C- Earth</button>
+                <button class="choice">D- Mars</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="7" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">An exoplanet is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- A planet which leaves its orbit</button>
+                <button class="choice">B- A planet from the another galaxy</button>
+                <button class="choice" id="true">C- A planet outside our solar system</button>
+                <button class="choice">D- A planet which doesn't orbit a star</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="7" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Which planet hosts The Great Red Spot?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Mars</button>
+                <button class="choice" id="true">B- Jupiter</button>
+                <button class="choice">C- Spe</button>
+                <button class="choice">D- Arion</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="7" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">What gas in Neptune's atmosphere gives the planet its blue color?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Hydrogen</button>
+                <button class="choice">B- Helium</button>
+                <button class="choice" id="true">C- Methane</button>
+                <button class="choice">D- Oxygen</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="7" class="questionHolder" style="display: none">
+        <center>
+            <p class="question"> How many of the solar system planets did the Romans know?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 2</button>
+                <button class="choice">B- 3</button>
+                <button class="choice">C- 4</button>
+                <button class="choice" id="true">D- 5</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="8" class="questionHolder" style="display: none">
+        <center>
+            <p class="question"> In astronomical terms "Corona" is ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- A moon of Saturn's</button>
+                <button class="choice">B- A constellation
+                </button>
+                <button class="choice">C- The outer atmosphere of a moon</button>
+                <button class="choice" id="true">D- The outer atmosphere of a star</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="8" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The planet which has no atmosphere is ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Neptune</button>
+                <button class="choice">B- Uranus</button>
+                <button class="choice">C- Venus</button>
+                <button class="choice" id="true">D- Mercury</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="8" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Earth's atmosphere ends and outer space stars after ____.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 10 km from sea level</button>
+                <button class="choice" id="true">B- 100 km from sea level</button>
+                <button class="choice">C- 1000 km from sea level</button>
+                <button class="choice">D- 10000 km from sea level</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="8" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">What percentage of the stars host planets like our sun?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 100%</button>
+                <button class="choice">B- 50%</button>
+                <button class="choice" id="true">C- 15%</button>
+                <button class="choice">D- 0.3%</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="9" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">How many years does Uranus take to complete an orbit?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 2 years</button>
+                <button class="choice">B- 23 years</button>
+                <button class="choice" id="true">C- 84 years</button>
+                <button class="choice">D- 100 years</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="9" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The planet famous for rotating on its side is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Neptune</button>
+                <button class="choice">B- Saturn</button>
+                <button class="choice">C- Venus</button>
+                <button class="choice" id="true">D- Uranus</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="9" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The range around a star where planets can have liquid water is known as ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Liquid range</button>
+                <button class="choice">B- Life-supporting range</button>
+                <button class="choice" id="true">C- Habitable zone</button>
+                <button class="choice">D- Hydration zone</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="9" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The number of shooting stars entering our atmosphere per day is estimatingly</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- 1000</button>
+                <button class="choice">B- 10,000</button>
+                <button class="choice">C- 100,000</button>
+                <button class="choice" id="true">D- 1,000,000</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="10" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Meteorites rarely injure humans. How many events are documented?</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- 1</button>
+                <button class="choice">B- 53</button>
+                <button class="choice">C- 76</button>
+                <button class="choice">D- 138</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="10" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Imbalance between nuclear energy of a star and the gravity applied on it results in</p>
+
+            <div class="choicePlace">
+                <button class="choice" id="true">A- Supernova</button>
+                <button class="choice">B- Asterism</button>
+                <button class="choice">C- Higher levels of electromagnetic radiation</button>
+                <button class="choice">D- A binary star</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="10" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The term blue moon refers to ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- When the moon is barely visible</button>
+                <button class="choice">B- When the moon is visible during the day</button>
+                <button class="choice">C- Venus when visible to the naked eye</button>
+                <button class="choice" id="true">D- A second full moon in a calendar month</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="10" class="questionHolder" style="display: none">
+        <center>
+            <p class="question"> Dark energy causes ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Deceleration in expansion of the universe</button>
+                <button class="choice" id="true">B- Acceleration in expansion of the universe</button>
+                <button class="choice">C- Deceleration in the gravitational repulsion</button>
+                <button class="choice">D- Acceleration in the gravitational repulsion</button>
+            </div>
+
+        
+        </center>
+    </div>
+
+    <div id="11" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The spacecraft that reached saturn I 2004 and explored until 2017 is</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Pioneer 11</button>
+                <button class="choice">B- Voyager 1</button>
+                <button class="choice">C- Voyager 2</button>
+                <button class="choice" id="true">D- Cassini</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="11" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">The first spacecraft to visit Pluto is ___.</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Pioneer 10</button>
+                <button class="choice" id="true">B- New Horizons</button>
+                <button class="choice">C- Galileo</button>
+                <button class="choice">D- Juno</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <div id="11" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">Which planet formed first in the solar system?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Mercury</button>
+                <button class="choice">B- Earth</button>
+                <button class="choice" id="true">C- Jupiter</button>
+                <button class="choice">D- Pluto</button>
+            </div>
+
+
+            
+        </center>
+    </div>
+
+    <div id="11" class="questionHolder" style="display: none">
+        <center>
+            <p class="question">which planet in our solar system spins the fastest?</p>
+
+            <div class="choicePlace">
+                <button class="choice">A- Mercury</button>
+                <button class="choice">B- Earth</button>
+                <button class="choice" id="true">C- Jupiter</button>
+                <button class="choice">D- Pluto</button>
+            </div>
+
+            
+        </center>
+    </div>
+
+    <!--Your Mum-->
+    <div>
+        <img src="design/E1.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E2.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E3.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E4.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E5.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E6.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E7.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E8.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E9.png" width="85%" style="position: fixed; right: 5%; bottom: 7%; display: none;" id="urMum">
+        <img src="design/E10.png" width="85%" style="position: fixed; right: 5%; bottom: 7%;display: none;" id="urMum">
+        <img src="design/E11.png" width="85%" style="position: fixed; right: 5%; bottom: 7%;display: none;" id="urMum">
+    </div>
+
+    <!-- to prevent double clicking-->
+    <div style="position: fixed; width: 100%; height: 100%; top:0; left: 0; background: rgba(0,0,0,0); display: none" id="doubleClickPrevent">
+    </div>
+
+    <!-- result section-->
+    <div id="12" class="questionHolder" style="display: none; left: 0;">
+        <center>
+            <!-- rank images. only one is shown : based on score-->
+            <div id="resultImg">
+                <p id="result" style="margin: 0; padding: 5px; padding-top: 10%; font-family: ourFont; font-size: 30px;"></p>
+                <hr style="width: 80%; border-color: black; border:solid; border-width: 1px; ">
+                <p style="width: 90%;font-family: ourFont;font-size: 17px;padding-bottom: 5%;text-align: left;" id="crack">Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+                     
+                <button class="choice" style="position: fixed; bottom:5%; width: 50%; left: 25%; font-family: ourFont; font-size: 20px;text-align: center;">More Questions</button>
+            </div>
+        </center>
+
+    </div>
+</body>
+<script src="jquery-3.5.1.js"></script>
+<script>
+    $("body").fadeIn();
+    var score = 0;
+    var i = 0;
+    var questionHolder = document.querySelectorAll("div.questionHolder");
+    var choicebuttons = document.querySelectorAll("button.choice");
+    var correctAns = document.querySelectorAll("#true");
+    var random = 0;
+    var products = document.querySelectorAll("#pr");
+
+    //adds 1 to score for every correct answer
+    for (var u = 0; u < correctAns.length; u++) {
+        correctAns[u].addEventListener("click", () => {
+            score += 1;
+        });
+    };
+
+    //this section creates transtions between question using jQuery, prevents double clicks, but mainly scores the answers
+    for (var t = 0; t < choicebuttons.length; t++) {
+        choicebuttons[t].addEventListener("click", () => {
+
+            $(questionHolder[random]).fadeOut(600).animate({
+                left: "-100%",
+                opacity: "1"
+            }, 600);
+            $(document.querySelectorAll("#urMum")[i - 1]).delay(600).fadeOut(600)
+            $(document.querySelectorAll("#urMum")[i]).delay(600).fadeIn(600);
+            document.querySelector("#doubleClickPrevent").style.display = "block";
+
+
+            //score calcutor function, activated on the last question
+            if (i == 11) {
+                $(questionHolder[45]).delay(600).fadeIn(600);
+                document.querySelector("#result").textContent = "You Got " + score + " out of 11.";
+                $(document.querySelectorAll("#urMum")[i]).fadeOut(300);
+                
+                if (score > -1) {
+                    document.querySelector("#crack").textContent = "Oops! Wrong quiz, Buddy. You don't have much knowledge about astronomy."
+                }
+                if (score > 4) {
+                    document.querySelector("#crack").textContent = "Well Done. You still have a lot to learn but you are on the right track."
+                }
+                if (score > 6) {
+                    document.querySelector("#crack").textContent = "Amazing! You are well-educated but you still have a lot to learn."
+                }
+
+                if (score > 9) {
+                    document.querySelector("#crack").textContent = "Congrats! It seems that you know a lot abot space. or you really are lucky!"
+                }
+                
+            }
+
+            if (i == 12) {
+                i = 0;
+                score = 0;
+                $(questionHolder[45]).fadeOut(600);
+
+                for (var y = 0; y < correctAns.length; y++) {
+                    correctAns[y].style.background = "white";
+                    correctAns[y].style.color = "black";
+                }
+                 for (var w = 0; w < products.length; w++) {
+                    products[w].style.display = "none";
+                }
+
+            }
+            if (i > 0) {
+                correctAns[random - 1].style.background = "green";
+                correctAns[random - 1].style.color = "white";
+            }
+
+            random = (Math.floor(Math.random() * 4) + 1) + (i * 4);
+            if (questionHolder[random] != undefined) {
+                questionHolder[random].style.display = "block";
+                questionHolder[random].style.opacity = "0";
+            }
+            $(questionHolder[random]).delay(600).animate({
+                left: "0%",
+                opacity: "1"
+            }, 600);
+            i += 1;
+
+            $("#doubleClickPrevent").delay(600).fadeOut(600);
+        });
+      
+
+    }
+    //document.addEventListener("deviceready", onDeviceReady, false);
+</script>
+
+
+</html>
